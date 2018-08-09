@@ -1,4 +1,5 @@
 import networkx as nx
+from distance import distance, distBetweenLines
 
 """ Returns a networkx graph G formed from V = the lines in format 
  [(x1, y1, z1), (x2, y2, z2)] and E = distances between the lines

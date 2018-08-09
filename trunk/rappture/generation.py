@@ -19,7 +19,8 @@ def get_initial_point(width_of_poly, length_of_poly):
     return (x, y, z)
 
 """Returns an end point for the corresponding start_point within the domain. """
-def get_end_point(p, mean, sd, phi_lower, phi_upper, theta_lower, theta_upper):
+def get_end_point(p, mean, sd, phi_lower, phi_upper, theta_lower, theta_upper, 
+                                                width_of_poly, length_of_poly):
     length = np.random.normal(mean, sd)
     phi = np.random.uniform(phi_lower, phi_upper)
     theta = verti_angle = np.random.uniform(theta_lower, theta_upper)
@@ -97,10 +98,12 @@ def generate(volume_fraction, width_of_poly, length_of_poly, diameter,
     volume = 0
     while (volume / volume_of_poly) < volume_fraction:
         start = get_initial_point(width_of_poly, length_of_poly)
-        end, length = get_end_point(start, mean_nanowire_length, SD, phi_lower, phi_upper, theta_lower, theta_upper)
+        end, length = get_end_point(start, mean_nanowire_length, SD, phi_lower, phi_upper, theta_lower, 
+            theta_upper, width_of_poly, length_of_poly)
         while (int_tol != diameter and not check_intersection(lines, start, end, diameter, int_tol)):
             start = get_initial_point(width_of_poly, length_of_poly)
-            end, length = get_end_point(start, mean_nanowire_length, SD, phi_lower, phi_upper, theta_lower, theta_upper)
+            end, length = get_end_point(start, mean_nanowire_length, SD, phi_lower, phi_upper, theta_lower, 
+                theta_upper, width_of_poly, length_of_poly)
         # Enforce ordering of y values.
         if start[1] <= end[1]:
             lines.append([start, end])
