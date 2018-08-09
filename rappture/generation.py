@@ -1,3 +1,7 @@
+import numpy as np
+import math
+from distance import distance, simple_distance
+
 """Returns volume of polymer given width(of square side) and length."""
 def get_polymer_volume(width_of_poly, length_of_poly):
     return (width_of_poly ** 2) * length_of_poly

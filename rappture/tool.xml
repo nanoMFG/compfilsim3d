@@ -25,7 +25,7 @@
       <about> <label>The length of the nanowires in microns</label> </about>
       <default>20</default>
     </number>
-    <number id="volume fraction">
+    <number id="volume_fraction">
       <about> <label>The volume fraction of nanowires</label> </about>
       <default>1</default>
     </number>

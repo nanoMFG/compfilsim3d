@@ -1,18 +1,18 @@
 import Rappture
 import sys
-from math import *
+import math
 from generation import generate, chop
 from graph import init_graph
 
 io = Rappture.library(sys.argv[1])
 
 diameter = float(io.get('input.number(diameter).current'))
-length = float(io.get('input.number(length).current'))
+mean_nanowire_length = float(io.get('input.number(length).current'))
 volume_fraction = float(io.get('input.number(volume_fraction).current'))
 
 width_of_poly = 25
 length_of_poly = 25
-SD = 0
+SD = .5
 theta_lower = 0
 theta_upper = 2 * math.pi
 phi_lower = 0
