@@ -4,7 +4,7 @@
     <title>Composite Filament Simulation 3D</title>
     <about>Description and credits</about>
     <command>
-      python @tool/src/model.py @driver
+      python @tool/model.py @driver
     </command>
     <limits>
       <cputime>900</cputime>
@@ -17,9 +17,22 @@
     <reportJobFailures>1</reportJobFailures>
   </tool>
   <input>
-    ...see Element Index below...
+    <number id="diameter">
+      <about> <label>The diameter of the nanowires in microns</label> </about>
+      <default>90.9e-3</default>
+    </number>
+    <number id="length">
+      <about> <label>The length of the nanowires in microns</label> </about>
+      <default>20</default>
+    </number>
+    <number id="volume fraction">
+      <about> <label>The volume fraction of nanowires</label> </about>
+      <default>1</default>
+    </number>
   </input>
   <output>
-    ...see Element Index below...
+    <string id="path">
+      <about> <label>Path found?</label></about>
+    </string>
   </output>
 </run>
