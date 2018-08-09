@@ -1,3 +1,6 @@
+import numpy as np
+import math
+
 """Distance returns the 3D distance between line1=(start1, end1) and
 line2=(start2, end2)."""
 def distance(line1, line2):
