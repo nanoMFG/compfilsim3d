@@ -1,51 +1,53 @@
-# ----------------------------------------------------------------------
-#  GRAPH
-#
-#  This simple example shows how you can use the Rappture toolkit
-#  to handle I/O for a simple simulator--in this case, one that
-#  evaluates an x/y graph
-#
-# ======================================================================
-#  AUTHOR:  Martin Hunt, Purdue University
-#  Copyright (c) 2015  HUBzero Foundation, LLC
-#
-#  See the file "license.terms" for information on usage and
-#  redistribution of this file, and for a DISCLAIMER OF ALL WARRANTIES.
-# ======================================================================
-
-# Note: You will not see stdout and stderr when this
-# tool is run by Rappture.  You can either run this tool from the command
-# line by passing in a driver xml file like this:
-# ~/rap/rappture/examples/graph> python graph.py driver1234.xml
-#
-# or you can redirect stdout and stderr to files by uncommenting the
-# two lines after the import sys
-
 import Rappture
-import numpy as np
 import sys
+from math import *
+from generation import generate, chop
+from graph import init_graph
 
-# uncomment these for debugging
-# sys.stderr = open('graph.err', 'w')
-# sys.stdout = open('graph.out', 'w')
+io = Rappture.library(sys.argv[1])
 
-io = Rappture.PyXml(sys.argv[1])
+diameter = float(io.get('input.number(diameter).current'))
+length = float(io.get('input.number(length).current'))
+volume_fraction = float(io.get('input.number(volume_fraction).current'))
 
-# When reading from xml, all values are strings
-xmin = float(io['input.number(min).current'].value)
-xmax = float(io['input.number(max).current'].value)
-formula = io['input.string(formula).current'].value
-print 'formula = %s' % formula
+width_of_poly = 25
+length_of_poly = 25
+SD = 0
+theta_lower = 0
+theta_upper = 2 * math.pi
+phi_lower = 0
+phi_upper = 2 * math.pi
+cross_sectional_area = (diameter / 2) ** 2 * math.pi
+intersection_tolerance = diameter
+num_subsections = 1
+lines = generate(volume_fraction, width_of_poly, 
+                                   length_of_poly, diameter, 
+                                   mean_nanowire_length, 
+                                   SD, theta_lower, theta_upper, 
+                                   phi_lower, phi_upper, 
+                                   intersection_tolerance)
+subsections = chop(lines, num_subsections, length_of_poly, width_of_poly) 
 
-curve = io['output.curve(result)']
-curve['about.label'] = 'Formula: Y vs X'
-curve['yaxis.label'] = 'Y'
-curve['xaxis.label'] = 'X'
+H, lineswi = init_graph(lines, diameter*1) 
+for line in lines:
+    x = [line[0][0], line[1][0]]
+    y = [line[0][1], line[1][1]]
+    z = [line[0][2], line[1][2]]
+    segments.append([x, y, z])
+K, K_sources, K_sinks = find_connecting_cluster(segments, H, 0, length_of_poly)
 
-num_points = 100
-x = np.linspace(xmin, xmax, num_points)
-y = eval(formula)
-curve['component.xy'] = (x, y)
+path = bool(K)
+io.put('output.string(path).current')
+# print 'formula = %s' % formula
+# npts = 100
 
-# Done. Write out the xml file for Rappture.
-io.close()
+# io.put('output.curve(result).about.label','Formula: Y vs X',append=0)
+# io.put('output.curve(result).yaxis.label','Y')
+# io.put('output.curve(result).xaxis.label','X')
+
+# for i in range(npts):
+#     x = (xmax-xmin)/npts * i + xmin;
+#     y = eval(formula)
+#     io.put('output.curve(result).component.xy', '%g %g\n' % (x,y), append=1)
+
+Rappture.result(io)
