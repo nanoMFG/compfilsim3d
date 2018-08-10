@@ -11,7 +11,7 @@
     </limits>
     <action><label>Simulate</label></action>
     <layout>xxx</layout>
-    <control>xxx</control>
+    <control>manual-resim</control>
     <uq>true</uq>
     <analyzer>xxx</analyzer>
     <reportJobFailures>1</reportJobFailures>
