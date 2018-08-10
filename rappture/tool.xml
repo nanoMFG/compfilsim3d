@@ -18,17 +18,21 @@
   </tool>
   <input>
     <number id="diameter">
-      <about> <label>The diameter of the nanowires in microns</label> </about>
-      <default>90.9e-3</default>
+      <about> <label>The diameter of the nanowires in nanometers</label> </about>
+      <default>90.9</default>
     </number>
     <number id="length">
-      <about> <label>The length of the nanowires in microns</label> </about>
+      <about> <label>The length of the nanowires in micrometers</label> </about>
       <default>20</default>
     </number>
     <number id="volume_fraction">
       <about> <label>The volume fraction of nanowires</label> </about>
       <default>1</default>
     </number>
+    <number id="alignment_factor">
+      <about> <label>The alignment factor of nanowires</label> </about>
+      <default>1</default>
+    </number>    
   </input>
   <output>
     <string id="path">

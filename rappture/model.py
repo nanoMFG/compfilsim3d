@@ -6,17 +6,23 @@ from graph import init_graph
 
 io = Rappture.library(sys.argv[1])
 
-diameter = float(io.get('input.number(diameter).current'))
+diameter = float(io.get('input.number(diameter).current'))*10**(-3)
 mean_nanowire_length = float(io.get('input.number(length).current'))
 volume_fraction = float(io.get('input.number(volume_fraction).current'))
+alignment_factor = float(io.get('input.number(alignment_factor).current'))
 
+#diameter = (diameter)e-3
 width_of_poly = 25
 length_of_poly = 25
 SD = .5
-theta_lower = 0
-theta_upper = 2 * math.pi
-phi_lower = 0
-phi_upper = 2 * math.pi
+# theta_lower = 0
+# theta_upper = 2 * math.pi
+# phi_lower = 0
+# phi_upper = 2 * math.pi
+theta_lower = alignment_factor * -math.pi
+theta_upper = alignment_factor * math.pi
+phi_lower = alignment_factor * -math.pi
+phi_upper = alignment_factor * math.pi
 cross_sectional_area = (diameter / 2) ** 2 * math.pi
 intersection_tolerance = diameter
 num_subsections = 1
