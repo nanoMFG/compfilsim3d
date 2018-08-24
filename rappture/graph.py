@@ -8,9 +8,11 @@ from distance import distance, distBetweenLines
  intersection point with line n.
 """
 def init_graph(lines, tolerance):
+    print("<g1>")
     G = nx.Graph()
     G.add_nodes_from(range(len(lines)))
     lineswi = list(lines) # Lines with intersection
+    print("Generated lines: :", len(lines))
     for i in range(len(lines)):
         for j in range(i):
             l1 = lines[i]
@@ -39,8 +41,11 @@ def find_connecting_cluster(segs, G, source_plane, sink_plane):
     sink_segs = [i for i in n if segs[i][1][0] == sink_plane or 
                                  segs[i][1][1] == sink_plane]
   
-    if not source_segs or not sink_segs:
-        print("No nanotubes intersecting source and/or sink planes.")
+    if not source_segs: 
+        print("No nanotubes intersecting source plane.")
+        return None, None, None
+    if not sink_segs:
+        print("No nanotubes intersecting sink plane.")
         return None, None, None
   
     # Iteratively grow the connecting cluster beginning from the source.

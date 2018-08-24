@@ -26,7 +26,7 @@
       <default>20</default>
     </number>
     <number id="volume_fraction">
-      <about> <label>The volume fraction of nanowires</label> </about>
+      <about> <label>The % volume of nanowires</label> </about>
       <default>1</default>
     </number>
     <number id="alignment_factor">
@@ -34,9 +34,4 @@
       <default>1</default>
     </number>    
   </input>
-  <output>
-    <string id="path">
-      <about> <label>Path found?</label></about>
-    </string>
-  </output>
 </run>
