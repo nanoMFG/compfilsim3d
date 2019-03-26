@@ -1,6 +1,8 @@
 # compfilsim3d
 NanoHUB Composite Modeling Project
 
+For [nanohub.org](https://nanohub.org)
+
 ## Overview
 
 This project is intended to be a design tool for anyone interested in making conductive composite 3D printing filaments utilizing nanowires. The simulation uses inputs including the additive material properties, size, and amount (vol %), and estimates bulk electrical resistivity based on a representative volume element. The simulation is run through multiple iterations in a Monte Carlo method to produce results from many different possible nanowire arrays within the material. Results from this simulation can be used to guide experimental formulations of new conductive 3D printing filaments.
