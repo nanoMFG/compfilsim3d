@@ -10,7 +10,7 @@ This project is intended to be a design tool for anyone interested in making con
 ## Input Details
 
 Nanowire diameter:
-* Diameter of the nanowires, in nanometers
+* Diameter of the nanowires, in nanometers.
 
 Nanowire length:
 * Average length of a nanowire, in millimeters.
